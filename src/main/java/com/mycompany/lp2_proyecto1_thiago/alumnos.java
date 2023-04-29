@@ -4,6 +4,16 @@
  */
 package com.mycompany.lp2_proyecto1_thiago;
 
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author ASUS
@@ -55,7 +65,54 @@ public class alumnos {
         this.direccion = direccion;
     }
     
-    public void InsertarAlumno(Jtexfield paranombre){
-        
+    public void InsertarAlumno(JTextField paramnombre,
+            JTextField paramapellido, JTextField paramedad,
+            JTextField paramdireccion){
+        setNombre(paramnombre.getText());
+        setDireccion(paramdireccion.getText());
+        conexion objetoConexion=new conexion();
+        String Consulta="INSERT INTO alumnos(nombre,apellido,edad,direccion) VALUES(?,?,?,?)";
+        try{
+            CallableStatement cs=objetoConexion.establecerConexcion().prepareCall(Consulta);
+            cs.setString(1, getNombre());
+            cs.setString(2, getApellido());
+            cs.setString(3, getEdad());
+            cs.setString(4, getDireccion());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "se creo correctamente");
+        }catch(Exception e){
+        JOptionPane.showMessageDialog(null,"hubo un error al intentar guardar en la base de datos! error:"+e.toString());
+        }
+    }
+    public void MostrarTabla(JTable paramtabla){
+        conexion ObjetoConexion=new conexion();
+        DefaultTableModel model = new DefaultTableModel();
+        TableRowSorter <TableModel> OrdenarTabla=new TableRowSorter <TableModel>(model);
+        paramtabla.setRowSorter(OrdenarTabla);
+        String sql="";
+        model.addColumn("Id");
+        model.addColumn("nombre");
+        model.addColumn("apellido");
+        model.addColumn("Edad");
+        model.addColumn("Direccion");
+        sql="select * from alumnos";
+        String [] datos =new String[5];
+        Statement st;
+        try{
+            st=ObjetoConexion.establecerConexcion().createStatement();
+            ResultSet rs= st.executeQuery(sql);
+            while (rs.next()){
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]=rs.getString(4);
+                datos[4]=rs.getString(5);
+                model.addRow(datos);
+            }
+            paramtabla.setModel(model);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error al mostrar los registros"+e.toString());
+        }
     }
 }

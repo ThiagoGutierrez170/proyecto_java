@@ -15,8 +15,8 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        /*conexion objetoConexion =new conexion();
-        objetoConexion.establecerConexcion();*/
+        alumnos objetoAlumnos =new alumnos();
+        objetoAlumnos.MostrarTabla(tabla);
     }
 
     /**
@@ -30,31 +30,31 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        espacio1 = new javax.swing.JTextPane();
+        campo1 = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        espacio2 = new javax.swing.JTextPane();
+        campo2 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        espacio3 = new javax.swing.JTextPane();
+        campo3 = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        espacio4 = new javax.swing.JTextPane();
+        campo4 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de alumnos"));
 
-        jScrollPane1.setViewportView(espacio1);
+        jScrollPane1.setViewportView(campo1);
 
-        jScrollPane2.setViewportView(espacio2);
+        jScrollPane2.setViewportView(campo2);
 
         jLabel1.setText("Apellido");
 
@@ -64,11 +64,16 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel4.setText("Dirección");
 
-        jScrollPane3.setViewportView(espacio3);
+        jScrollPane3.setViewportView(campo3);
 
-        jScrollPane4.setViewportView(espacio4);
+        jScrollPane4.setViewportView(campo4);
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -139,21 +144,21 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de alumnos"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Nombre", "Apellido", "Edad", "Direccion"
+
             }
         ));
-        jScrollPane5.setViewportView(jTable1);
+        jScrollPane5.setViewportView(tabla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -198,7 +203,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        alumnos ObjetoConexion=new alumnos();
+        ObjetoAlumno.InsertarAlumno(campo1,campo2,campo3,campo4);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,10 +248,10 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane espacio1;
-    private javax.swing.JTextPane espacio2;
-    private javax.swing.JTextPane espacio3;
-    private javax.swing.JTextPane espacio4;
+    private javax.swing.JTextPane campo1;
+    private javax.swing.JTextPane campo2;
+    private javax.swing.JTextPane campo3;
+    private javax.swing.JTextPane campo4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -254,6 +266,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }
