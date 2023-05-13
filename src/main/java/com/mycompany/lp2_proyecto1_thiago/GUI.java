@@ -4,17 +4,20 @@
  */
 package com.mycompany.lp2_proyecto1_thiago;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
  */
 public class GUI extends javax.swing.JFrame {
-
+    DefaultTableModel elementos =new DefaultTableModel();
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        campo0.setEnabled(false);
         alumnos objetoAlumnos = new alumnos();
         objetoAlumnos.MostrarAlumnos(tabla);
     }
@@ -41,6 +44,17 @@ public class GUI extends javax.swing.JFrame {
         campo2 = new javax.swing.JTextField();
         campo3 = new javax.swing.JTextField();
         campo4 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        campo0 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        campo5 = new javax.swing.JTextField();
+        campo6 = new javax.swing.JTextField();
+        campo7 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        campo8 = new javax.swing.JTextField();
+        btnlimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,7 +101,41 @@ public class GUI extends javax.swing.JFrame {
 
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tabla);
+
+        jLabel5.setText("id");
+
+        campo0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo0ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Fecha de nacimiento");
+
+        jLabel7.setText("Ciudad");
+
+        jLabel8.setText("Genero");
+
+        campo5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo5ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Email");
+
+        btnlimpiar.setText("Limpiar");
+        btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,38 +143,54 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(btnborrar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnguardar)
-                                .addGap(61, 61, 61)
-                                .addComponent(btneditar))
-                            .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnlimpiar)
+                        .addGap(241, 241, 241))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campo3)
-                                    .addComponent(campo2)
-                                    .addComponent(campo1)
-                                    .addComponent(campo4, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(70, 70, 70)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(campo3)
+                                .addComponent(campo2)
+                                .addComponent(campo1)
+                                .addComponent(campo4, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                .addComponent(campo0)
+                                .addComponent(campo5)
+                                .addComponent(campo6)
+                                .addComponent(campo7)
+                                .addComponent(campo8)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnguardar)
+                            .addGap(61, 61, 61)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnborrar)
+                                .addComponent(btneditar)))))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(campo0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(campo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,16 +206,34 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(campo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(campo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(campo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(campo7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(campo8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnguardar)
                             .addComponent(btneditar))
                         .addGap(18, 18, 18)
-                        .addComponent(btnborrar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnlimpiar)
+                            .addComponent(btnborrar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,16 +242,67 @@ public class GUI extends javax.swing.JFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         alumnos ObjetoAlumno =new alumnos();
-        ObjetoAlumno.InsertarAlumno(campo1, campo2, campo3, campo4);
+        ObjetoAlumno.InsertarAlumno(campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+        ObjetoAlumno.MostrarAlumnos(tabla);
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnborrarActionPerformed
         // TODO add your handling code here:
+        alumnos ObjetoAlumno =new alumnos();
+        ObjetoAlumno.Eliminar(campo0);
+        ObjetoAlumno.MostrarAlumnos(tabla);
+        campo0.setText(null);
+        campo1.setText(null);
+        campo2.setText(null);
+        campo3.setText(null);
+        campo4.setText(null);
+        campo5.setText(null);
+        campo6.setText(null);
+        campo7.setText(null);
+        campo8.setText(null);
+        int fila =tabla.getRowCount();
+        for(int i=0;i<fila;i++){
+            elementos.removeRow(0);
+        }
     }//GEN-LAST:event_btnborrarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // TODO add your handling code here:
+        alumnos ObjetoAlumno =new alumnos();
+        ObjetoAlumno.Editar(campo0,campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+        ObjetoAlumno.MostrarAlumnos(tabla);
     }//GEN-LAST:event_btneditarActionPerformed
+
+    private void campo0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo0ActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        alumnos ObjetoAlumno= new alumnos();
+        ObjetoAlumno.SelecionarAlumno(tabla, campo0, campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+    }//GEN-LAST:event_tablaMouseClicked
+
+    private void campo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo5ActionPerformed
+
+    private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        // TODO add your handling code here:
+        campo0.setText(null);
+        campo1.setText(null);
+        campo2.setText(null);
+        campo3.setText(null);
+        campo4.setText(null);
+        campo5.setText(null);
+        campo6.setText(null);
+        campo7.setText(null);
+        campo8.setText(null);
+        int fila =tabla.getRowCount();
+        for(int i=0;i<fila;i++){
+            elementos.removeRow(0);
+        }
+    }//GEN-LAST:event_btnlimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,14 +343,25 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnborrar;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnlimpiar;
+    private javax.swing.JTextField campo0;
     private javax.swing.JTextField campo1;
     private javax.swing.JTextField campo2;
     private javax.swing.JTextField campo3;
     private javax.swing.JTextField campo4;
+    private javax.swing.JTextField campo5;
+    private javax.swing.JTextField campo6;
+    private javax.swing.JTextField campo7;
+    private javax.swing.JTextField campo8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
