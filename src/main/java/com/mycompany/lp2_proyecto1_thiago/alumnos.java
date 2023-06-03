@@ -4,9 +4,12 @@
  */
 package com.mycompany.lp2_proyecto1_thiago;
 
+import com.toedter.calendar.JDateChooser;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import javafx.scene.control.ComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -101,37 +104,7 @@ public class alumnos {
         this.email = email;
     }
     
-    public void InsertarAlumno(JTextField paramnombre, 
-            JTextField paramapellido, JTextField paramedad,
-            JTextField paramdireccion,JTextField paramfecha_nac,
-            JTextField paramciudad,JTextField paramgenero,JTextField paramemail){
-        
-            setNombre(paramnombre.getText());
-            setApellido(paramapellido.getText());
-            setEdad(paramedad.getText());
-            setDireccion(paramdireccion.getText());
-            setFecha_nac(paramfecha_nac.getText());
-            setCiudad(paramciudad.getText());
-            setGenero(paramgenero.getText());
-            setEmail(paramemail.getText());
-            conexion objetoConexion = new conexion();
-            String Consulta ="INSERT INTO alumnos(nombre,apellido,edad,direccion,fecha_nac,ciudad,genero,email) VALUES(?,?,?,?,?,?,?,?);";
-            try{
-               CallableStatement cs = objetoConexion.establecerConexcion().prepareCall(Consulta);
-               cs.setString(1,getNombre()); 
-               cs.setString(2,getApellido());
-               cs.setString(3,getEdad());
-               cs.setString(4,getDireccion());
-               cs.setString(5,getFecha_nac());
-               cs.setString(6,getCiudad());
-               cs.setString(7,getGenero());
-               cs.setString(8,getEmail());
-               cs.execute();
-               JOptionPane.showMessageDialog(null,"Se creo correctamente!");
-            }catch(Exception e){
-                 JOptionPane.showMessageDialog(null,"Hubo un error al intentar guardar en la base de datos!,error:"+e.toString());
-            }
-    }
+    
       public void MostrarAlumnos(JTable paramtabla){
         conexion  objetoConexion = new conexion(); 
         DefaultTableModel model = new DefaultTableModel();
@@ -175,81 +148,7 @@ public class alumnos {
         }
         
     }
-      public void SelecionarAlumno(JTable paramtabla,JTextField paramid ,JTextField paramnombre, 
-            JTextField paramapellido, JTextField paramedad,
-            JTextField paramdireccion,JTextField paramfecha_nac,
-            JTextField paramciudad,JTextField paramgenero,
-            JTextField paramemail){
-          try{
-              int fila=paramtabla.getSelectedRow();
-              if (fila>=0){
-                  paramid.setText(paramtabla.getValueAt(fila, 0).toString());
-                  paramnombre.setText(paramtabla.getValueAt(fila, 1).toString());
-                  paramapellido.setText(paramtabla.getValueAt(fila, 2).toString());
-                  paramedad.setText(paramtabla.getValueAt(fila, 3).toString());
-                  paramdireccion.setText(paramtabla.getValueAt(fila, 4).toString());
-                  paramfecha_nac.setText(paramtabla.getValueAt(fila, 5).toString());
-                  paramciudad.setText(paramtabla.getValueAt(fila, 6).toString());
-                  paramgenero.setText(paramtabla.getValueAt(fila, 7).toString());
-                  paramemail.setText(paramtabla.getValueAt(fila, 8).toString());
-                  
-              }
-              else{
-                  JOptionPane.showMessageDialog(null,"Error al selecionar");
-              }
-          }
-          catch(Exception e){
-              JOptionPane.showMessageDialog(null,"Error al selecionar, error: "+e.toString());
-          }
+     
+   
           
-      }
-      public void Editar(JTextField paramid ,JTextField paramnombre, 
-            JTextField paramapellido, JTextField paramedad,
-            JTextField paramdireccion,JTextField paramfecha_nac,
-            JTextField paramciudad,JTextField paramgenero,JTextField paramemail){
-              setId(Integer.parseInt(paramid.getText()));
-              setNombre(paramnombre.getText());
-              setApellido(paramapellido.getText());
-              setEdad(paramedad.getText());
-              setDireccion(paramdireccion.getText());
-              setFecha_nac(paramfecha_nac.getText());
-              setCiudad(paramciudad.getText());
-              setGenero(paramgenero.getText());
-              setEmail(paramemail.getText());
-              conexion objetoConexion=new conexion();
-              String editar="UPDATE alumnos set alumnos.nombre=?,alumnos.apellido=?,alumnos.edad=?,alumnos.direccion=?,alumnos.fecha_nac=?,alumnos.ciudad=?,alumnos.genero=?,alumnos.email=? where alumnos.id=?";
-              try{
-                  CallableStatement cs = objetoConexion.establecerConexcion().prepareCall(editar);
-                  cs.setString(1, getNombre());
-                  cs.setString(2, getApellido());
-                  cs.setString(3, getEdad());
-                  cs.setString(4, getDireccion());
-                  cs.setString(5, getFecha_nac());
-                  cs.setString(6, getCiudad());
-                  cs.setString(7, getGenero());
-                  cs.setString(8, getEmail());
-                  cs.setInt(9, getId());
-                  cs.execute();
-                  JOptionPane.showMessageDialog(null,"Se creo edito correctamente!");
-                  
-              }
-              catch(Exception e){
-                  JOptionPane.showMessageDialog(null,"Error al editar, error: "+e.toString());
-                  
-              }
-        }
-      public void Eliminar(JTextField paramid){
-          conexion objetoConexion=new conexion();
-          setId(Integer.parseInt(paramid.getText()));
-          String eliminar="DELETE from alumnos where alumnos.id=?";
-          try{
-              CallableStatement cs = objetoConexion.establecerConexcion().prepareCall(eliminar);
-              cs.setInt(1, getId());
-              cs.execute();
-              JOptionPane.showMessageDialog(null,"Se creo elimino correctamente!");
-          }
-          catch(Exception e){
-          JOptionPane.showMessageDialog(null,"Error al eliminar, error: "+e.toString());
-      }
-      }
 }

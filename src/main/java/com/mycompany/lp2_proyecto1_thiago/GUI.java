@@ -4,6 +4,9 @@
  */
 package com.mycompany.lp2_proyecto1_thiago;
 
+import java.sql.CallableStatement;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +24,7 @@ public class GUI extends javax.swing.JFrame {
         alumnos objetoAlumnos = new alumnos();
         objetoAlumnos.MostrarAlumnos(tabla);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,6 +35,7 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLocaleChooser1 = new com.toedter.components.JLocaleChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,12 +54,12 @@ public class GUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        campo5 = new javax.swing.JTextField();
-        campo6 = new javax.swing.JTextField();
         campo7 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         campo8 = new javax.swing.JTextField();
         btnlimpiar = new javax.swing.JButton();
+        campo5 = new com.toedter.calendar.JDateChooser();
+        campo6 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,12 +127,6 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel8.setText("Genero");
 
-        campo5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo5ActionPerformed(evt);
-            }
-        });
-
         jLabel9.setText("Email");
 
         btnlimpiar.setText("Limpiar");
@@ -136,6 +135,8 @@ public class GUI extends javax.swing.JFrame {
                 btnlimpiarActionPerformed(evt);
             }
         });
+
+        campo6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Encarnacion", "Asuncion", "Capitan Miranda", "Chaco", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,40 +147,40 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnlimpiar)
-                        .addGap(241, 241, 241))
+                    .addComponent(jLabel6)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(btnguardar)
+                    .addComponent(btnlimpiar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(btnborrar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campo6, javax.swing.GroupLayout.Alignment.TRAILING, 0, 1, Short.MAX_VALUE)
+                            .addComponent(campo3)
+                            .addComponent(campo4)
+                            .addComponent(campo7)
+                            .addComponent(campo8)
+                            .addComponent(campo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campo1)
+                            .addComponent(campo2)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel9))
-                            .addGap(70, 70, 70)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(campo3)
-                                .addComponent(campo2)
-                                .addComponent(campo1)
-                                .addComponent(campo4, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                .addComponent(campo0)
-                                .addComponent(campo5)
-                                .addComponent(campo6)
-                                .addComponent(campo7)
-                                .addComponent(campo8)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnguardar)
-                            .addGap(61, 61, 61)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnborrar)
-                                .addComponent(btneditar)))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                                    .addComponent(btneditar)
+                                    .addComponent(campo0, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(121, 121, 121))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,11 +207,11 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(campo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(campo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(campo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,7 +223,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(campo8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnguardar)
                             .addComponent(btneditar))
@@ -233,7 +234,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,36 +242,108 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
-        alumnos ObjetoAlumno =new alumnos();
-        ObjetoAlumno.InsertarAlumno(campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+        
+   
+        if ( campo1.getText().isEmpty() || campo2.getText().isEmpty() || campo3.getText().isEmpty() || campo4.getText().isEmpty()
+                || campo7.getText().isEmpty() || campo8.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null,"Error no se ha selecrionado nada");
+        }else{
+        //ObjetoAlumno.InsertarAlumno(campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+         conexion objetoConexion = new conexion();
+            SimpleDateFormat sdf1= new SimpleDateFormat("yyyy-MM-dd");
+            String date1=sdf1.format( campo5.getDate());
+            String Consulta ="INSERT INTO alumnos(nombre,apellido,edad,direccion,fecha_nac,ciudad,genero,email) VALUES(?,?,?,?,?,?,?,?);";
+            try{
+               CallableStatement cs = objetoConexion.establecerConexcion().prepareCall(Consulta);
+               cs.setString(1,campo1.getText()); 
+               cs.setString(2,campo2.getText());
+               cs.setString(3,campo3.getText());
+               cs.setString(4,campo4.getText());
+               cs.setString(5,date1);
+               cs.setString(6,campo6.getSelectedItem().toString());
+               cs.setString(7,campo7.getText());
+               cs.setString(8,campo8.getText());
+               cs.execute();
+               JOptionPane.showMessageDialog(null,"Se creo correctamente!");
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(null,"Hubo un error al intentar guardar en la base de datos!,error:"+e.toString());
+            }
+            alumnos ObjetoAlumno =new alumnos();
         ObjetoAlumno.MostrarAlumnos(tabla);
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnborrarActionPerformed
         // TODO add your handling code here:
         alumnos ObjetoAlumno =new alumnos();
-        ObjetoAlumno.Eliminar(campo0);
+        if ( campo0.getText().trim().isEmpty() ){
+            JOptionPane.showMessageDialog(null,"Error no se ha selecrionado nada");
+        }else{
+         //ObjetoAlumno.SelecionarAlumno(tabla, campo0, campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+         conexion objetoConexion=new conexion();
+          String eliminar="DELETE from alumnos where alumnos.id=?";
+          try{
+              CallableStatement cs = objetoConexion.establecerConexcion().prepareCall(eliminar);
+              cs.setInt(1, Integer.parseInt( campo0.getText()));
+              cs.execute();
+              JOptionPane.showMessageDialog(null,"Se creo elimino correctamente!");
+          }
+          catch(Exception e){
+           
+                      JOptionPane.showMessageDialog(null,"Error al editar, error: "+e.toString());
+                  
+        }
+      
         ObjetoAlumno.MostrarAlumnos(tabla);
         campo0.setText(null);
         campo1.setText(null);
         campo2.setText(null);
         campo3.setText(null);
         campo4.setText(null);
-        campo5.setText(null);
-        campo6.setText(null);
+        campo5.setDate(null);
+         campo6.setSelectedItem(null);
         campo7.setText(null);
         campo8.setText(null);
         int fila =tabla.getRowCount();
         for(int i=0;i<fila;i++){
             elementos.removeRow(0);
         }
+    }
     }//GEN-LAST:event_btnborrarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // TODO add your handling code here:
         alumnos ObjetoAlumno =new alumnos();
-        ObjetoAlumno.Editar(campo0,campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+         //ObjetoAlumno.SelecionarAlumno(tabla, campo0, campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+                 if ( campo0.getText().trim().isEmpty() ){
+                     JOptionPane.showMessageDialog(null,"Error no se ha selecrionado nada");
+                  }else{
+              conexion objetoConexion=new conexion();
+              String editar="UPDATE alumnos set alumnos.nombre=?,alumnos.apellido=?,alumnos.edad=?,alumnos.direccion=?,alumnos.fecha_nac=?,alumnos.ciudad=?,alumnos.genero=?,alumnos.email=? where alumnos.id=?";
+              try{
+                  CallableStatement cs = objetoConexion.establecerConexcion().prepareCall(editar);
+                   cs.setString(1,campo1.getText()); 
+               cs.setString(2,campo2.getText());
+               cs.setString(3,campo3.getText());
+               cs.setString(4,campo4.getText());
+               cs.setString(5, campo5.getDateFormatString());
+               cs.setString(6,campo6.getSelectedItem().toString());
+               cs.setString(7,campo7.getText());
+               cs.setString(8,campo8.getText());
+                cs.setString(9,campo0.getText());
+                  cs.execute();
+                  JOptionPane.showMessageDialog(null,"Se creo edito correctamente!");
+                  
+              }
+              catch(Exception e){
+                  
+                      JOptionPane.showMessageDialog(null,"Error al editar, error: "+e.toString());
+                  
+                  
+              }
+               
         ObjetoAlumno.MostrarAlumnos(tabla);
+    }
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void campo0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo0ActionPerformed
@@ -280,12 +353,28 @@ public class GUI extends javax.swing.JFrame {
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
         // TODO add your handling code here:
         alumnos ObjetoAlumno= new alumnos();
-        ObjetoAlumno.SelecionarAlumno(tabla, campo0, campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+        //ObjetoAlumno.SelecionarAlumno(tabla, campo0, campo1, campo2, campo3, campo4,campo5,campo6,campo7,campo8);
+        try{
+              int fila= tabla.getSelectedRow();
+              if (fila>=0){
+                   campo0.setText(  tabla.getValueAt(fila, 0).toString());
+                   campo1.setText( tabla.getValueAt(fila, 1).toString());
+                   campo2.setText( tabla.getValueAt(fila, 2).toString());
+                   campo3.setText( tabla.getValueAt(fila, 3).toString());
+                   campo4.setText( tabla.getValueAt(fila, 4).toString());
+                   campo5.setDateFormatString( tabla.getValueAt(fila, 5).toString());
+                   campo6.setSelectedItem( tabla.getValueAt(fila, 6).toString());
+                   campo7.setText( tabla.getValueAt(fila, 7).toString());
+                   campo8.setText( tabla.getValueAt(fila, 8).toString());
+              }
+              else{
+                  JOptionPane.showMessageDialog(null,"Error al selecionar");
+              }
+          }
+          catch(Exception e){
+              JOptionPane.showMessageDialog(null,"Error al selecionar, error: "+e.toString());
+          }
     }//GEN-LAST:event_tablaMouseClicked
-
-    private void campo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo5ActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
         // TODO add your handling code here:
@@ -294,8 +383,8 @@ public class GUI extends javax.swing.JFrame {
         campo2.setText(null);
         campo3.setText(null);
         campo4.setText(null);
-        campo5.setText(null);
-        campo6.setText(null);
+        campo5.setDate(null);
+         campo6.setSelectedItem(null);
         campo7.setText(null);
         campo8.setText(null);
         int fila =tabla.getRowCount();
@@ -349,8 +438,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField campo2;
     private javax.swing.JTextField campo3;
     private javax.swing.JTextField campo4;
-    private javax.swing.JTextField campo5;
-    private javax.swing.JTextField campo6;
+    private com.toedter.calendar.JDateChooser campo5;
+    private javax.swing.JComboBox<String> campo6;
     private javax.swing.JTextField campo7;
     private javax.swing.JTextField campo8;
     private javax.swing.JLabel jLabel1;
@@ -362,6 +451,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private com.toedter.components.JLocaleChooser jLocaleChooser1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
